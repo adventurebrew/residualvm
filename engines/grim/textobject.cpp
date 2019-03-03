@@ -275,6 +275,14 @@ void TextObject::setupText() {
 			cutLen = nextLinePos;
 		}
 		Common::String currentLine(message.c_str(), message.c_str() + nextLinePos);
+
+		if (g_grim->getGameLanguage() == Common::HE_ISR || true) {
+			currentLine.clear();
+			for (int l = nextLinePos; l > 0; l--) {
+				currentLine += *(message.c_str() + l - 1);
+			}
+		}
+
 		_lines[j] = currentLine;
 		int width = _font->getKernedStringLength(currentLine);
 		if (width > _maxLineWidth)
